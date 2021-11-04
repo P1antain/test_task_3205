@@ -41,16 +41,21 @@ export const Main: React.FC = () => {
   async function getCurrency() {
     let data = await instance
       .get(`/latest?apikey=${YOUR_ACCESS_KEY}&base_currency=${value[0]}`)
-      .then((res) => res.data.data);
+      .then((res) => res.data.data)
+      .catch((res) => res);
+
+    console.log(data);
     const result = Object.entries(data).map(([name, price]) => {
       return {
         name,
         price,
       };
     });
+    console.log(result);
     let search = result.filter((e) => {
       return e.name.includes(value[1]);
     });
+    console.log(search);
     dispatch(getSearchResult(search));
   }
   React.useEffect(() => {
@@ -82,8 +87,9 @@ export const Main: React.FC = () => {
       {search.length !== 0 ? (
         <ul className={styles.lists}>
           <h2>
-            {count} {value[0]} ={" "}
+            {count} {value[0]}{" "}
           </h2>
+          <span>=</span>
           {search.map(
             (
               i: { name: React.ReactNode; price: number },

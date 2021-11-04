@@ -35,7 +35,8 @@ export const Currency: React.FC = () => {
   async function getCurrency() {
     let data = await instance
       .get(`/latest?apikey=${YOUR_ACCESS_KEY}&base_currency=${currentValue}`)
-      .then((res) => res.data.data);
+      .then((res) => res.data.data)
+      .catch((res) => res);
     const result = Object.entries(data).map(([name, price]) => {
       return {
         name,
