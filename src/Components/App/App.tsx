@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { Route, Switch } from "react-router-dom";
+import {Route, Switch, useHistory, useLocation} from "react-router-dom";
 import { Main } from "../Main/Main";
 import { Currency } from "../Currency/Currency";
 import { Layout } from "../Layout/Layout";
@@ -11,6 +11,13 @@ import {
 import { useAppDispatch } from "../../Redux/hooks";
 
 const App: React.FC = () => {
+  const location = useLocation()
+  const history = useHistory()
+  React.useEffect(()=>{
+    if(location.pathname === '/test_task_3205'){
+      history.push('/')
+    }
+  },[])
   const dispatch = useAppDispatch();
   function initialLanguage() {
     let userLang = navigator.language.slice(0, 2).toLowerCase();
