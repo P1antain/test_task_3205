@@ -14,9 +14,8 @@ const App: React.FC = () => {
   const location = useLocation()
   const history = useHistory()
   React.useEffect(()=>{
-    if(location.pathname === '/test_task_3205'){
       history.push('/')
-    }
+
   },[])
   const dispatch = useAppDispatch();
   function initialLanguage() {
